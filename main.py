@@ -9,13 +9,20 @@ from youtubers import youtubers_list
 
 
 def main():
-    VK_TOKEN = os.getenv('TOKEN_VK')
+    VK_TOKEN = os.getenv('VK_TOKEN')
+    if not VK_TOKEN:
+        print("CONSOLE | VK_TOKEN не найден, или указан неверно")
+        return
+
+    user_id = os.getenv('USER_ID')
+    if not user_id:
+        print("CONSOLE | USER_ID не найден, или указан неверно")
+        return
+
     vk_session = vk_api.VkApi(token=VK_TOKEN)
     upload = vk_api.VkUpload(vk_session)
     vk = vk_session.get_api()
     ydl_opts = {"ffmpeg_location": "D:/Soft/FFmpeg/bin"} # Manual location
-
-    user_id = os.getenv('USER_ID')
 
     while True:
         try:
